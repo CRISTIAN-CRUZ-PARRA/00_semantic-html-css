@@ -6,7 +6,17 @@
     <title>My Notes Application</title>
     <link rel="stylesheet" href="sanitize.css">
     <link rel="stylesheet" href="style.css">
+
 </head>
+<script>
+    require('dotenv').config(); // Carregar variables d'entorn si s'executa localment
+
+const express = require('express'); const app = express();
+
+app.get('/', (req, res) => { const message = process.env.WELCOME_MESSAGE || 'Missatge per defecte'; res.send(<h1>${message}</h1>); });
+
+const PORT = process.env.PORT || 3000; app.listen(PORT, () => console.log(Servidor en marxa al port ${PORT}));
+</script>
 <body>
     <header>
         <h1>My Notes Application</h1>
@@ -21,8 +31,22 @@
                 <label for="content">Content:</label>
                 <textarea class="form-height" id="content" name="content" placeholder="" required></textarea>
 
-                
                 <button type="submit">Add Note</button>
+            </form>
+        </div>
+        <div class="form__container">
+            <form>
+                <h2>Contact Us</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+
+                <button type="submit">Send Message</button>
             </form>
         </div>
         <nav class="resources_container">
